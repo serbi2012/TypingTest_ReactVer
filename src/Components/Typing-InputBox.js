@@ -17,7 +17,9 @@ function TypingInputBox() {
   return (
     <div className="Typing-InputBox">
       <div className="Typing-Exaple">
-        <FailDot />
+        {userInput.typo.map((value, i) => {
+          return <FailDot idx={i} />;
+        })}
         {phrase.phraseList[phrase.nowPhrase]}
       </div>
       <input
