@@ -37,6 +37,16 @@
   border-radius: 2vmin;
   height: 40vh;
   width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Credit {
+  position: absolute;
+  top: 96vh;
+  color: rgba(240, 248, 255, 0.349);
+  font-size: 1vmin;
 }
 
 .ScoreBox {
@@ -48,8 +58,43 @@
 .Score {
   border: 0.5vmin #ccc solid;
   padding: 1vmin;
-  padding-left: 8vmin;
-  padding-right: 8vmin;
+  padding-left: 4vw;
+  padding-right: 4vw;
   transform: translateY(-3px);
   font-weight: bold;
+}
+
+.Score:first-child {
+  border-end-start-radius: 2vmin;
+}
+
+.Score:last-child {
+  border-bottom-right-radius: 2vmin;
+}
+
+.Typing-InputBox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 7vmin;
+}
+
+.Typing-Input {
+  width: 40vw;
+  background-color: rgba(240, 248, 255, 0);
+  border: none;
+  border-bottom: solid 5px rgb(36, 36, 36);
+  outline: none;
+  color: rgb(155, 155, 155);
+}
+
+.Typing-Exaple {
+  width: 40vw;
+  color: #ccc;
+  user-select: none;
+}
+
+.Typing-NextExaple {
+  color: rgb(77, 77, 77);
+  user-select: none;
 }
