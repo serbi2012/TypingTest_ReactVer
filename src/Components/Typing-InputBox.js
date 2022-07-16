@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { shuffle, toNext } from "../Store/phrase";
 import { addFail, addProgress, addSuccess } from "../Store/score";
-import { changeInput } from "../Store/userInput";
+import { changeInput, setLocation } from "../Store/userInput";
 import { FailDot } from "./FailDot";
 
 function TypingInputBox() {
@@ -14,12 +14,41 @@ function TypingInputBox() {
     dispatch(shuffle());
   }, []);
 
+  function makeLocation(text) {
+    const result = [];
+
+    let str = 0;
+    let spa = 0;
+
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] == " ") {
+        spa++;
+      } else {
+        str++;
+      }
+
+      if (str % 2 === 0) {
+        result.push({ location: [str / 2, i - str / 2] });
+      } else {
+        result.push({
+          location: [(str + 1) / 2, i - (str + 1) / 2],
+        });
+      }
+    }
+
+    result[0] = { location: [0, 0] };
+    // result[text.length - 1].location[0]++;
+
+    return result;
+  }
+
   return (
     <div className="Typing-InputBox">
       <div className="Typing-Exaple">
         {userInput.typo.map((value, i) => {
           return <FailDot idx={i} />;
         })}
+        {console.log(userInput.typo)}
         {phrase.phraseList[phrase.nowPhrase]}
       </div>
       <input
@@ -27,19 +56,14 @@ function TypingInputBox() {
         placeholder="위에 보이는 문장을 똑같이 입력해보세요!"
         onChange={(e) => {
           dispatch(changeInput(`${e.target.value}`));
-
-          // for (let i = 0; i < userInput.value.length; i++) {
-          //   if (phrase.phraseList[phrase.nowPhrase][i] !== userInput.value[i]) {
-          //     document.querySelector(".Typing-Exaple").style.color = "red";
-          //     return;
-          //   }
-          // }
-          // document.querySelector(".Typing-Exaple").style.color = "#ccc";
         }}
         onKeyDown={(e) => {
           if (e.keyCode === 13) {
             dispatch(toNext());
             dispatch(changeInput(``));
+            dispatch(
+              setLocation(makeLocation(phrase.phraseList[phrase.nowPhrase + 1]))
+            );
             e.target.value = "";
 
             if (phrase.phraseList[phrase.nowPhrase] === userInput.value) {

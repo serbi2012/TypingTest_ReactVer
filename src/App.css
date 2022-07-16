@@ -103,8 +103,8 @@
 }
 
 .redDot {
-  height: 5px;
-  width: 5px;
+  height: 0.5vmin;
+  width: 0.5vmin;
   background-color: rgba(231, 43, 43, 0.765);
   border-radius: 50%;
   display: inline-block;
