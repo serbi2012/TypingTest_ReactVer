@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Main-Conatiner">
+        <div className="Title">TypingTest</div>
+        <div className="TypingBox-Container">
+          <div className="ScoreBox">
+            <div className="Score">성공 : 0</div>
+            <div className="Score">실패 : 0</div>
+            <div className="Score">진행도 : 0</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
