@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { ScoreBox } from "./ScoreBox";
 import { TypingInputBox } from "./Typing-InputBox";
 

@@ -109,8 +109,4 @@
   border-radius: 50%;
   display: inline-block;
   position: absolute;
-  transform: translateX(
-      calc(0.55vmin + (1.42vmin * 7) + (1vmin * 5) + (0.7vmin * 2))
-    )
-    translateY(-0.4vmin);
 }

@@ -1,20 +1,53 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeInput } from "../store";
+import { shuffle, toNext } from "../Store/phrase";
+import { addFail, addProgress, addSuccess } from "../Store/score";
+import { changeInput } from "../Store/userInput";
+import { FailDot } from "./FailDot";
 
 function TypingInputBox() {
   const dispatch = useDispatch();
-  const userInput = useSelector((state) => {
-    return state.userInput;
-  });
+  const userInput = useSelector((state) => state.userInput);
+  const phrase = useSelector((state) => state.phrase);
+
+  useEffect(() => {
+    dispatch(shuffle());
+  }, []);
 
   return (
     <div className="Typing-InputBox">
-      <div className="Typing-Exaple">삶이 있는 한 희망은 있다.</div>
+      <div className="Typing-Exaple">
+        <FailDot />
+        {phrase.phraseList[phrase.nowPhrase]}
+      </div>
       <input
         className="Typing-Input mt-2 mb-2"
         placeholder="위에 보이는 문장을 똑같이 입력해보세요!"
         onChange={(e) => {
           dispatch(changeInput(`${e.target.value}`));
+
+          // for (let i = 0; i < userInput.value.length; i++) {
+          //   if (phrase.phraseList[phrase.nowPhrase][i] !== userInput.value[i]) {
+          //     document.querySelector(".Typing-Exaple").style.color = "red";
+          //     return;
+          //   }
+          // }
+          // document.querySelector(".Typing-Exaple").style.color = "#ccc";
+        }}
+        onKeyDown={(e) => {
+          if (e.keyCode === 13) {
+            dispatch(toNext());
+            dispatch(changeInput(``));
+            e.target.value = "";
+
+            if (phrase.phraseList[phrase.nowPhrase] === userInput.value) {
+              dispatch(addSuccess());
+              dispatch(addProgress());
+            } else {
+              dispatch(addFail());
+              dispatch(addProgress());
+            }
+          }
         }}
       />
       <div className="Typing-NextExaple">
@@ -24,7 +57,7 @@ function TypingInputBox() {
         >
           Next
         </span>
-        당신의 행복은 무엇이 당신의 영혼을 노래하게 하는가에 따라 결정된다.
+        {phrase.phraseList[phrase.nowPhrase + 1]}
       </div>
     </div>
   );
