@@ -30,6 +30,7 @@ const phrase = createSlice({
   reducers: {
     shuffle(state) {
       state.phraseList.sort(() => Math.random() - 0.5);
+      state.nowPhrase = 0;
     },
     toNext(state) {
       state.nowPhrase++;

@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { toggleResult } from "../Store/modalState";
 
 function ScoreBox() {
   const dispatch = useDispatch();
   const score = useSelector((state) => state.score);
+
+  if (score.progress === score.goal) {
+    dispatch(toggleResult(true));
+  }
 
   return (
     <div className="ScoreBox">

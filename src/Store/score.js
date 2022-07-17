@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const score = createSlice({
   name: "score",
-  initialState: { success: 0, fail: 0, progress: 0 },
+  initialState: {
+    success: 0,
+    fail: 0,
+    progress: 0,
+    goal: 5,
+  },
   reducers: {
     addSuccess(state) {
       state.success++;
@@ -18,8 +23,12 @@ const score = createSlice({
       state.fail = 0;
       state.progress = 0;
     },
+    changeGoal(state, action) {
+      state.goal = action.payload;
+    },
   },
 });
 
-export const { addSuccess, addFail, addProgress, resetScore } = score.actions;
+export const { addSuccess, addFail, addProgress, resetScore, changeGoal } =
+  score.actions;
 export { score };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { shuffle, toNext } from "../Store/phrase";
 import { addFail, addProgress, addSuccess } from "../Store/score";
 import { changeInput, setLocation } from "../Store/userInput";
+import { makeLocation } from "../Utils/makeLocation";
 import { FailDot } from "./FailDot";
 
 function TypingInputBox() {
@@ -13,38 +14,6 @@ function TypingInputBox() {
   useEffect(() => {
     dispatch(shuffle());
   }, []);
-
-  function makeLocation(text, input) {
-    const result = [];
-
-    let str = 0;
-    let spa = 0;
-
-    for (let i = 0; i < input.length; i++) {
-      if (text[i] == " ") {
-        spa++;
-      } else {
-        str++;
-      }
-
-      if (input[i] !== text[i]) {
-        if (str % 2 === 0) {
-          result.push({ location: [str / 2, i - str / 2] });
-        } else {
-          result.push({
-            location: [(str + 1) / 2, i - (str + 1) / 2],
-          });
-        }
-      }
-    }
-
-    if (result[0]) {
-      result[0] = { location: [0, 0] };
-    }
-    // result[text.length - 1].location[0]++;
-
-    return result;
-  }
 
   return (
     <div className="Typing-InputBox">
