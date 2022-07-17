@@ -29,6 +29,7 @@ function ResultModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button
+          variant="secondary"
           onClick={() => {
             dispatch(toggleResult(false));
             dispatch(shuffle());

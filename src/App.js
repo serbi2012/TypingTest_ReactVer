@@ -45,7 +45,7 @@ function App() {
           }}
           className="d-flex justify-content-center align-items-center"
         />
-        <div className="Credit">Developed By RiAXO</div>
+        <div className="Credit user-select-none">Developed By RiAXO</div>
       </div>
     </div>
   );

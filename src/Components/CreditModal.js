@@ -27,6 +27,7 @@ function CreditModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button
+          variant="secondary"
           onClick={() => {
             dispatch(toggleCredit(false));
           }}

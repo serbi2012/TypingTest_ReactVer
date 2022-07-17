@@ -8,7 +8,7 @@ function TypingBox() {
   const goal = useSelector((state) => state.score.goal);
 
   return (
-    <div className="TypingBox-Container" style={{ userSelect: "none" }}>
+    <div className="TypingBox-Container user-select-none">
       <ScoreBox />
       <TypingInputBox />
       <div>
