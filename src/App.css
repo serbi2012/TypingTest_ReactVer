@@ -51,6 +51,12 @@
   font-size: 1vmin;
 }
 
+.CreditModalBtn {
+  position: absolute;
+  bottom: 2vmin;
+  right: 2vmin;
+}
+
 .ScoreBox {
   display: flex;
   justify-content: center;
