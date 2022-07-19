@@ -4,7 +4,7 @@ function makeLocation(text, input) {
   let stringNum = 0;
   let spaceNum = 0;
 
-  for (let i = 0; i < input.length; i++) {
+  for (let i = 0; i < input.length - 1; i++) {
     if (text[i] == " ") {
       spaceNum++;
     } else {

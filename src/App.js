@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleCredit, toggleResult } from "./Store/modalState";
 import { CreditModal } from "./Components/CreditModal";
 import { ResultModal } from "./Components/ResultModal";
+import { shuffle } from "./Store/phrase";
+import { resetScore } from "./Store/score";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +16,18 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Main-Conatiner">
+      <div
+        className="Main-Conatiner"
+        onKeyDown={(e) => {
+          if (modalState.resultModal) {
+            if (e.keyCode === 8 || e.keyCode === 27) {
+              dispatch(toggleResult(false));
+              dispatch(shuffle());
+              dispatch(resetScore());
+            }
+          }
+        }}
+      >
         <div className="Title">TypingTest</div>
         <TypingBox />
         <Button
@@ -40,9 +53,6 @@ function App() {
         />
         <ResultModal
           show={modalState.resultModal}
-          onEscapeKeyDown={() => {
-            dispatch(toggleResult(false));
-          }}
           className="d-flex justify-content-center align-items-center"
         />
         <div className="Credit user-select-none">Developed By RiAXO</div>
